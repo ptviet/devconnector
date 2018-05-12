@@ -7,8 +7,8 @@ const posts = require("./routes/api/posts");
 
 const app = express();
 
-//DB config
-const db = require("./config/key").mongoURI;
+//DB dbconfig
+const db = require("./dbconfig/key").mongoURI;
 
 // connect to MongoDB
 mongoose.connect(db)
