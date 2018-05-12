@@ -1,5 +1,5 @@
 /node_modules
 package-lock.json
 .idea
-/dbconfig/key.js
+/config/db.js
 .DS_Store
