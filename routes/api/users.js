@@ -82,36 +82,40 @@ router.post("/login", (req, res) => {
     if (!user) {
       errors.email = "User not found.";
       return res.status(404).json(errors);
+    } else {
+      // Check password
+      bcrypt
+        .compare(password, user.password)
+        .then(isMatch => {
+          if (isMatch) {
+            // User matched
+
+            // Create JWT Payload
+            const payload = {
+              id: user.id,
+              name: user.name,
+              avatar: user.avatar
+            };
+
+            // Sign JWT Token
+            jwt.sign(
+              payload,
+              keys.secretOrKey,
+              { expiresIn: 3600 },
+              (err, token) => {
+                res.json({
+                  success: true,
+                  token: "Bearer " + token
+                });
+              }
+            );
+          } else {
+            errors.password = "Incorrect password.";
+            res.status(400).json(errors);
+          }
+        })
+        .catch(err => console.log(err));
     }
-
-    // Check password
-    bcrypt
-      .compare(password, user.password)
-      .then(isMatch => {
-        if (isMatch) {
-          // User matched
-
-          // Create JWT Payload
-          const payload = { id: user.id, name: user.name, avatar: user.avatar };
-
-          // Sign JWT Token
-          jwt.sign(
-            payload,
-            keys.secretOrKey,
-            { expiresIn: 3600 },
-            (err, token) => {
-              res.json({
-                success: true,
-                token: "Bearer " + token
-              });
-            }
-          );
-        } else {
-          errors.password = "Incorrect password.";
-          res.status(400).json(errors);
-        }
-      })
-      .catch(err => console.log(err));
   });
 });
 
