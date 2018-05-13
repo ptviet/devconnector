@@ -1,5 +1,7 @@
 .DS_Store
 .idea
 /node_modules
+/client/node_modules
 /config/db.js
 package-lock.json
+/client/package-lock.json
