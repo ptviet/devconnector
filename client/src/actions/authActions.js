@@ -21,9 +21,9 @@ export const loginUser = (userData, history) => dispatch => {
   axios
     .post("/api/users/login", userData)
     .then(res => {
-      // Save to local storage
+      // Save to localStorage
       const { token } = res.data;
-      // Set token to local storage
+      // Set token to localStorage
       localStorage.setItem("jwtToken", token);
       // Set token to Auth header
       setAuthToken(token);
@@ -46,4 +46,19 @@ export const setCurrentUser = decoded => {
     type: SET_CURRENT_USER,
     payload: decoded
   };
+};
+
+// Log user out
+export const logoutUser = () => dispatch => {
+  // Remove token from localStorage
+  localStorage.removeItem("jwtToken");
+  // Remove auth header for future requests
+  setAuthToken(false);
+  // Set current user to {} , isAuthenticated to false
+  dispatch(setCurrentUser({}));
+
+  // Clear current Profile
+
+  // Redirect to login
+  window.location.href = "/login";
 };
