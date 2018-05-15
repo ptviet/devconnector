@@ -30,7 +30,10 @@ export default function(state = initialState, action) {
     case GET_PROFILES:
       return {};
     case CLEAR_CURRENT_PROFILE:
-      return {};
+      return {
+        ...state,
+        profile: null
+      };
     default:
       return state;
   }

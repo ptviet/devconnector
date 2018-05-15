@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import PropTypes from "props-type";
-import {connect} from 'react-redux';
-import {getCurrentProfile} from "../../actions/profileActions";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { getCurrentProfile } from "../../actions/profileActions";
 
-class  extends Component {
-  componentDidMount(){
+class Dashboard extends Component {
+  componentDidMount() {
     this.props.getCurrentProfile();
   }
 
@@ -13,8 +13,8 @@ class  extends Component {
       <div>
         <h1>Dashboard</h1>
       </div>
-    )
+    );
   }
 }
 
-export default connect(null, {getCurrentProfile})(Dashboard);
+export default connect(null, { getCurrentProfile })(Dashboard);
