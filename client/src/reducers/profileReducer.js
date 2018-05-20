@@ -28,7 +28,11 @@ export default function(state = initialState, action) {
     case PROFILE_NOT_FOUND:
       return {};
     case GET_PROFILES:
-      return {};
+      return {
+        ...state,
+        profiles: action.payload,
+        loading: false
+      };
     case CLEAR_CURRENT_PROFILE:
       return {
         ...state,
