@@ -4,12 +4,17 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 class Landing extends Component {
-  componentDidMount() {
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
-    }
-  }
   render() {
+    const guestLinks = (
+      <div>
+        <Link to="/register" className="btn btn-lg btn-info mr-2">
+          Sign Up
+        </Link>
+        <Link to="/login" className="btn btn-lg btn-light">
+          Login
+        </Link>
+      </div>
+    );
     return (
       <div className="landing">
         <div className="dark-overlay landing-inner text-light">
@@ -22,12 +27,7 @@ class Landing extends Component {
                   from other developers
                 </p>
                 <hr />
-                <Link to="/register" className="btn btn-lg btn-info mr-2">
-                  Sign Up
-                </Link>
-                <Link to="/login" className="btn btn-lg btn-light">
-                  Login
-                </Link>
+                {this.props.auth.isAuthenticated ? null : guestLinks}
               </div>
             </div>
           </div>
