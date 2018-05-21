@@ -4,13 +4,12 @@
   "description": "Social network for developers",
   "main": "server.js",
   "scripts": {
-    "client-install": "npm install --prefix client",
     "start": "node server.js",
-    "server": "node server.js",
-    "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild":
-      "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "client": "cd client && npm run start",
+    "server": "nodemon server.js",
+    "install": "cd client && npm install && npm run build && cd ..",
+    "dev":
+      "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
   "author": "Steven Phan",
   "license": "MIT",
