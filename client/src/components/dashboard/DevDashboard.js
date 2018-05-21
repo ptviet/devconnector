@@ -8,7 +8,7 @@ import ProfileAction from "./ProfileAction";
 import Experience from "./Experience";
 import Education from "./Education";
 
-class Dashboard extends Component {
+class DevDashboard extends Component {
   componentDidMount() {
     this.props.getCurrentProfile();
   }
@@ -75,7 +75,7 @@ class Dashboard extends Component {
   }
 }
 
-Dashboard.propTypes = {
+DevDashboard.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   deleteAccount: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
@@ -88,5 +88,5 @@ const mapStatetoProps = state => ({
 });
 
 export default connect(mapStatetoProps, { getCurrentProfile, deleteAccount })(
-  Dashboard
+  DevDashboard
 );
